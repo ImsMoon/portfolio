@@ -1,32 +1,58 @@
-# React + TypeScript + Vite
+# Imtiyaz Hoque Hazari — Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+**Live site:** https://imsmoon.github.io/portfolio/
 
-Currently, two official plugins are available:
+Portfolio of **Imtiyaz Hoque Hazari**, Lead .NET / C# Software Engineer based in Dhaka, Bangladesh. It covers experience, projects, skills and contact details for hiring managers, recruiters and collaborators.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## About
 
-## React Compiler
+Lead Software Engineer at [Brain Station 23](https://brainstation-23.com/) since 2021. Architects high-traffic microservices on **.NET 8/10, ASP.NET Core, EF Core, Azure and AWS**, and leads international Agile teams across the UK, Norway and Belgium.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Highlights:
+- Leads 9–10 engineers on public-facing e-commerce, food delivery and booking applications
+- Built a ticket generation service (MassTransit, AWS SQS, Redis) that scaled batch capacity from 2,000 to 5,000 and supports 20,000+ concurrent generations
+- Integrated payment gateways (VIPPS, Swedbank, Adyen) and Azure B2C / Keycloak authentication
+- Added OpenTelemetry distributed tracing across microservices
 
-## Expanding the Oxlint configuration
+## Skills
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+- **Languages & frameworks:** C#, .NET 8/10, ASP.NET Core, EF Core, LINQ, xUnit, TypeScript, Angular
+- **Architecture:** Microservices, Clean Architecture, Domain-Driven Design, REST APIs, SOLID
+- **Data & messaging:** SQL Server, MongoDB, Redis, MassTransit, AWS SQS
+- **Cloud & DevOps:** Azure, Azure DevOps, AWS, Docker, CI/CD, OpenTelemetry, Git
+- **Practices:** Agile / Scrum, Trunk-Based Development, AI-assisted development
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+## Projects
+
+- **FleetCheck: Quarterly Random Selection** (TypeScript, Node.js, PostgreSQL): reproducible, auditable random vehicle sampling
+- **MoodFlix** (React, TypeScript, Cloudflare Workers): movie and series mood tracker — [live](https://moviemoodtracker.imtiyaz-moon.workers.dev/)
+- **EndToEnd Food Delivery** (TypeScript): pizza, burger and coffee delivery app
+- **PDF Password Remover** (Python, Streamlit): removes password protection from PDFs — [live](https://pdf-password-remover-dvae9gifwaonpbcqf2vyjd.streamlit.app/)
+
+## Education
+
+BSc. in Computer Science & Engineering — American International University-Bangladesh (AIUB), 2014–2018
+
+## Connect
+
+- Portfolio: https://imsmoon.github.io/portfolio/
+- GitHub: https://github.com/ImsMoon
+- LinkedIn: https://linkedin.com/in/imtiyaz-hoque-hazari
+- HackerRank: https://hackerrank.com/profile/imtiyaz_h_h_moon
+
+---
+
+## Tech stack of this site
+
+Built with React 19, TypeScript and Vite. Deployed to GitHub Pages with GitHub Actions on every push to `main`.
+
+### Development
+
+```bash
+npm install
+npm run dev     # local dev server
+npm run build   # type-check and production build to dist/
+npm run lint    # oxlint
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+Keywords: Imtiyaz Hoque Hazari, Imtiyaz Hoque, Imtiyaz Hazari, Lead .NET Engineer, Lead C# Developer, .NET developer Bangladesh, Dhaka software engineer, ASP.NET Core, microservices, Azure, AWS, portfolio.
