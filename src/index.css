@@ -1,1 +1,190 @@
-/* Global styles live in App.css */
+:root {
+  --font-sans: 'DM Sans Variable', 'DM Sans', system-ui, sans-serif;
+  --font-serif: 'Instrument Serif', Georgia, serif;
+
+  --bg: #f8f9f4;
+  --paper: #f5f6ee;
+  --surface: #e9edde;
+  --card: #f3f6eb;
+  --card-hover: #eef3e1;
+  --ink: #2b3d31;
+  --ink-soft: #4f6642;
+  --muted: #5d7050;
+  --line: #d8dfcd;
+  --line-strong: #bccdaa;
+  --green: #2e4934;
+  --green-hover: #46633b;
+  --on-green: #f5f6ee;
+  --accent: #5d7c43;
+  --accent-strong: #4a6a34;
+  --accent-soft: #d8e7bf;
+  --dot: #8ba56e;
+  --focus: #5f7a2f;
+  --selection-bg: #d0e7ab;
+  --hero-glow-1: #f5f4ec;
+  --hero-glow-2: #ecefe4;
+
+  --radius-frame: 17px;
+  --radius-card: 8px;
+  --radius-ctl: 5px;
+  --frame-gap: 14px;
+
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --t-fast: 0.2s;
+
+  --fs-display: clamp(2.4rem, 6vw, 4.25rem);
+  --fs-h2: clamp(2rem, 4vw, 2.75rem);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f1712;
+    --paper: #141d17;
+    --surface: #1a2620;
+    --card: #18231c;
+    --card-hover: #1f2d24;
+    --ink: #e6ece0;
+    --ink-soft: #bcc9b0;
+    --muted: #a3b394;
+    --line: #2a382e;
+    --line-strong: #3d5242;
+    --green: #cfe5a8;
+    --green-hover: #b9d88c;
+    --on-green: #15200f;
+    --accent: #a6c47a;
+    --accent-strong: #bcd794;
+    --accent-soft: #263a2b;
+    --dot: #8ba56e;
+    --focus: #b5d37f;
+    --selection-bg: #3d5242;
+    --hero-glow-1: #17221b;
+    --hero-glow-2: #0f1712;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  min-width: 320px;
+}
+
+h1,
+h2,
+h3,
+p,
+ul {
+  margin: 0;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+em {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+}
+
+::selection {
+  background: var(--selection-bg);
+  color: var(--ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 4px;
+  border-radius: 3px;
+}
+
+.skip-link {
+  position: fixed;
+  top: 8px;
+  left: 8px;
+  z-index: 100;
+  padding: 8px 14px;
+  background: var(--green);
+  color: var(--on-green);
+  border-radius: var(--radius-ctl);
+  text-decoration: none;
+  transform: translateY(-150%);
+  transition: transform var(--t-fast) var(--ease);
+}
+
+.skip-link:focus {
+  transform: none;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* Scroll reveal only hides content when JS is running (see main.tsx). */
+.js .reveal {
+  opacity: 0;
+  transform: translateY(8px);
+  transition:
+    opacity 0.6s var(--ease),
+    transform 0.6s var(--ease);
+  transition-delay: calc(min(var(--i, 0), 8) * 60ms);
+}
+
+.js .reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (max-width: 760px) {
+  :root {
+    --frame-gap: 8px;
+    --radius-frame: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+
+  .js .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
