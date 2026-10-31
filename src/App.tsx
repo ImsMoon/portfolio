@@ -7,141 +7,192 @@ import {
   skills,
   education,
 } from './data';
+import { Header } from './components/Header';
+import { Reveal } from './components/Reveal';
+import { CopyEmail } from './components/CopyEmail';
 import './App.css';
+
+const [firstName, ...restName] = profile.name.split(' ');
+const lastName = restName.pop();
+const year = new Date().getFullYear();
+
+function pad(n: number) {
+  return String(n + 1).padStart(2, '0');
+}
 
 export default function App() {
   return (
     <>
-      <header className="nav">
-        <a href="#top" className="brand">{profile.name}</a>
-        <nav>
-          <a href="#experience">Experience</a>
-          <a href="#projects">Projects</a>
-          <a href="#skills">Skills</a>
-          <a href="#contact" className="nav-cta">Contact</a>
-        </nav>
-      </header>
+      <a href="#main" className="skip-link">Skip to content</a>
 
-      <main id="top">
-        <section className="hero">
-          <div className="hero-left">
-            <p className="eyebrow">{profile.location}</p>
-            <h1>{profile.name}</h1>
-            <p className="title">{profile.title}</p>
-            <p className="headline">{profile.headline}</p>
+      <div className="frame">
+        <Header />
 
-            <ul className="highlights">
-              {highlights.map((h) => (
-                <li key={h.label}>
-                  <span className="hl-value">{h.value}</span>
-                  <span className="hl-label">{h.label}</span>
-                </li>
-              ))}
-            </ul>
+        <main id="main">
+          <section className="hero">
+            <div className="hero-left">
+              <p className="eyebrow">{profile.location}</p>
+              <h1>
+                {firstName} {restName.join(' ')} <em>{lastName}</em>
+              </h1>
+              <p className="title">{profile.title}</p>
+              <p className="headline">{profile.headline}</p>
 
-            <div className="actions">
-              <a href="#projects" className="btn btn-primary">View projects</a>
-              <a href="#experience" className="btn btn-ghost">Experience</a>
-            </div>
-          </div>
+              <ul className="highlights">
+                {highlights.map((h) => (
+                  <li key={h.label}>
+                    <span className="hl-value">{h.value}</span>
+                    <span className="hl-label">{h.label}</span>
+                  </li>
+                ))}
+              </ul>
 
-          <aside className="current-card">
-            <p className="card-label">Currently</p>
-            <h2>{currentRole.role}</h2>
-            <p className="card-company">
-              <a href={currentRole.companyUrl} target="_blank" rel="noreferrer">{currentRole.company}</a>
-              <span> · {currentRole.period}</span>
-            </p>
-            <ul>
-              {currentRole.points.map((p) => (
-                <li key={p}>{p}</li>
-              ))}
-            </ul>
-          </aside>
-        </section>
-
-        <section id="experience" className="section">
-          <h2 className="section-title">Experience</h2>
-          <div className="timeline">
-            {experience.map((job) => (
-              <article key={job.company + job.period} className="job">
-                <header>
-                  <h3>{job.role}</h3>
-                  <p className="job-meta">
-                    <a href={job.url} target="_blank" rel="noreferrer">{job.company}</a>
-                    <span> · {job.location} · {job.period}</span>
-                  </p>
-                </header>
-                <ul>
-                  {job.points.map((p) => (
-                    <li key={p}>{p}</li>
-                  ))}
-                </ul>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section id="projects" className="section section-alt">
-          <h2 className="section-title">Projects</h2>
-          <div className="grid">
-            {projects.map((p) => (
-              <article key={p.name} className="card">
-                <h3>{p.name}</h3>
-                <p>{p.description}</p>
-                <ul className="tags">
-                  {p.stack.map((s) => (
-                    <li key={s}>{s}</li>
-                  ))}
-                </ul>
-                <div className="card-links">
-                  <a href={p.url} target="_blank" rel="noreferrer">Source</a>
-                  {p.live && (
-                    <a href={p.live} target="_blank" rel="noreferrer" className="live">Live demo</a>
-                  )}
-                </div>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section id="skills" className="section">
-          <h2 className="section-title">Skills</h2>
-          <div className="skills">
-            {skills.map((g) => (
-              <div key={g.group} className="skill-group">
-                <h3>{g.group}</h3>
-                <ul className="tags">
-                  {g.items.map((i) => (
-                    <li key={i}>{i}</li>
-                  ))}
-                </ul>
+              <div className="actions">
+                <a href="#projects" className="btn btn-primary">View projects</a>
+                <a href="#experience" className="btn btn-ghost">Experience</a>
               </div>
-            ))}
-          </div>
-        </section>
+            </div>
 
-        <section className="section section-alt">
-          <h2 className="section-title">Education</h2>
-          <h3>{education.degree}</h3>
-          <p className="job-meta">{education.school} · {education.period}</p>
-        </section>
+            <aside className="current-card">
+              <p className="card-label">Currently</p>
+              <h3>{currentRole.role}</h3>
+              <p className="card-company">
+                <a href={currentRole.companyUrl} target="_blank" rel="noreferrer noopener">
+                  {currentRole.company}
+                  <span className="sr-only"> (opens in a new tab)</span>
+                </a>
+                <span> · {currentRole.period}</span>
+              </p>
+              <ul>
+                {currentRole.points.map((p) => (
+                  <li key={p}>{p}</li>
+                ))}
+              </ul>
+            </aside>
+          </section>
 
-        <section id="contact" className="section contact">
-          <h2 className="section-title">Let's connect</h2>
-          <p>Happy to talk about .NET, microservice architecture, or leading engineering teams.</p>
-          <div className="actions">
-            <a href={`mailto:${profile.email}`} className="btn btn-primary">{profile.email}</a>
-            <a href={profile.linkedin} target="_blank" rel="noreferrer" className="btn btn-ghost">LinkedIn</a>
-            <a href={profile.github} target="_blank" rel="noreferrer" className="btn btn-ghost">GitHub</a>
-            <a href={profile.hackerrank} target="_blank" rel="noreferrer" className="btn btn-ghost">HackerRank</a>
-          </div>
-        </section>
+          <section id="experience" className="section">
+            <Reveal>
+              <p className="eyebrow"><span>01</span> Experience</p>
+              <h2 className="section-title">Where I've <em>worked</em></h2>
+              <div className="timeline">
+                {experience.map((job, i) => (
+                  <Reveal key={job.company + job.period} index={i} className="job-wrap">
+                    <article className="job">
+                      <p className="job-index">{pad(i)}</p>
+                      <div className="job-body">
+                        <header>
+                          <h3>{job.role}</h3>
+                          <p className="job-meta">
+                            <a href={job.url} target="_blank" rel="noreferrer noopener">
+                              {job.company}
+                              <span className="sr-only"> (opens in a new tab)</span>
+                            </a>
+                            <span> · {job.location} · {job.period}</span>
+                          </p>
+                        </header>
+                        <ul>
+                          {job.points.map((p) => (
+                            <li key={p}>{p}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    </article>
+                  </Reveal>
+                ))}
+              </div>
+            </Reveal>
+          </section>
+
+          <section id="projects" className="section section-alt">
+            <Reveal>
+              <p className="eyebrow"><span>02</span> Projects</p>
+              <h2 className="section-title">Selected <em>projects</em></h2>
+              <div className="grid">
+                {projects.map((p, i) => (
+                  <Reveal key={p.name} index={i} className="card-wrap">
+                    <article className="card">
+                      <h3>{p.name}</h3>
+                      <p>{p.description}</p>
+                      <ul className="tags">
+                        {p.stack.map((s) => (
+                          <li key={s}>{s}</li>
+                        ))}
+                      </ul>
+                      <div className="card-links">
+                        <a href={p.url} target="_blank" rel="noreferrer noopener">
+                          Source<span className="sr-only"> (opens in a new tab)</span> →
+                        </a>
+                        {p.live && (
+                          <a href={p.live} target="_blank" rel="noreferrer noopener" className="live">
+                            Live demo<span className="sr-only"> (opens in a new tab)</span> →
+                          </a>
+                        )}
+                      </div>
+                    </article>
+                  </Reveal>
+                ))}
+              </div>
+            </Reveal>
+          </section>
+
+          <section id="skills" className="section">
+            <Reveal>
+              <p className="eyebrow"><span>03</span> Skills</p>
+              <h2 className="section-title">Core <em>skills</em></h2>
+              <div className="skills">
+                {skills.map((g, i) => (
+                  <Reveal key={g.group} index={i} className="skill-wrap">
+                    <div className="skill-group">
+                      <h3>{g.group}</h3>
+                      <ul className="tags">
+                        {g.items.map((item) => (
+                          <li key={item}>{item}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  </Reveal>
+                ))}
+              </div>
+            </Reveal>
+          </section>
+
+          <section className="section section-alt">
+            <Reveal>
+              <p className="eyebrow"><span>04</span> Education</p>
+              <h2 className="section-title">Education</h2>
+              <h3 className="edu-degree">{education.degree}</h3>
+              <p className="job-meta">{education.school} · {education.period}</p>
+            </Reveal>
+          </section>
+
+          <section id="contact" className="section contact">
+            <Reveal>
+              <p className="eyebrow"><span>05</span> Contact</p>
+              <h2 className="section-title">Let's <em>connect</em></h2>
+              <p>Happy to talk about .NET, microservice architecture, or leading engineering teams.</p>
+              <div className="actions">
+                <a href={`mailto:${profile.email}`} className="btn btn-primary">{profile.email}</a>
+                <CopyEmail email={profile.email} />
+                <a href={profile.linkedin} target="_blank" rel="noreferrer noopener" className="btn btn-ghost">
+                  LinkedIn<span className="sr-only"> (opens in a new tab)</span>
+                </a>
+                <a href={profile.github} target="_blank" rel="noreferrer noopener" className="btn btn-ghost">
+                  GitHub<span className="sr-only"> (opens in a new tab)</span>
+                </a>
+                <a href={profile.hackerrank} target="_blank" rel="noreferrer noopener" className="btn btn-ghost">
+                  HackerRank<span className="sr-only"> (opens in a new tab)</span>
+                </a>
+              </div>
+            </Reveal>
+          </section>
+        </main>
 
         <footer className="footer">
-          © {new Date().getFullYear()} {profile.name}
+          <span>© {year} {profile.name}</span>
+          <a href="#top">Back to top</a>
         </footer>
-      </main>
+      </div>
     </>
   );
 }
